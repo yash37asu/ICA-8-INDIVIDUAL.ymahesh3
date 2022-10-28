@@ -1,7 +1,7 @@
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
-import java.io.IOException;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -31,11 +31,26 @@ public class UrinalsTest {
     }
 
     @Test
-    void openFile() throws IOException {
-        String path = "src/Urinal.dat";
+    void fileDoesntExist() {
+        String path = "src/Uinal.dat";
         System.out.println("====== Yashkumar Maheshwari == TEST THREE EXECUTED =======");
-        assertEquals(true, urinal.openFile(path));
+        assertEquals(false, urinal.openFile(path));
     }
+
+    @Test
+    void emptyFile() {
+        String path = "src/Urinal.dat";
+        System.out.println("====== Yashkumar Maheshwari == TEST FOUR EXECUTED =======");
+        assertEquals(false, urinal.emptyFile(path));
+    }
+
+    @Test
+    void IOException() {
+        String path = "src/Uinal.dat";
+        System.out.println("====== Yashkumar Maheshwari == TEST FIVE EXECUTED =======");
+        assertEquals(false, urinal.openFile(path));
+    }
+
 
     @Test
     void freeUrinals() {
@@ -46,10 +61,12 @@ public class UrinalsTest {
     }
 
     @Test
-    void writetofile() throws IOException {
+    void writetofile() {
         ArrayList<Integer> numbers = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
         System.out.println("====== Yashkumar Maheshwari == TEST FIVE EXECUTED =======");
         assertEquals(true, urinal.writeToFile(numbers));
 
     }
+
+
 }

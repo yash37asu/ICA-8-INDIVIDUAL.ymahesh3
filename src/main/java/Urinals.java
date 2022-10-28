@@ -8,16 +8,17 @@ import java.util.*;
 public class Urinals {
     ArrayList<String> inputs = new ArrayList<>();
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
+        System.out.println("\n Urinal couting problem starts \n");
         String path = "urinal.dat";
         Urinals urinal = new Urinals();
         Boolean fileOpened = urinal.openFile(path);
-        System.out.println("file openend: urinal.dat \n input Arraylist generated!");
-        ArrayList<Integer> Results = new ArrayList<>();
+        System.out.println("file opened: urinal.dat \nInput Arraylist generated!: "+ fileOpened);
+        ArrayList<Integer> Results;
         Results = urinal.freeUrinals(urinal.inputs);
-        System.out.println("Inputs validated \n output arraylist generated!");
+        System.out.println("Inputs validated \nOutput arraylist generated!");
         Boolean ruleCreated = urinal.writeToFile(Results);
-        System.out.println("Output file generated at : rule.txt ");
+        System.out.println("Output file generated at : rule.txt :"+ ruleCreated);
     }
 
     public Boolean openFile(String path) {
@@ -33,13 +34,16 @@ public class Urinals {
             }
             br.close();
             return true;
-        } catch (FileNotFoundException E) {
+        } catch (IOException E) {
             return false;
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
     }
 
+    public Boolean emptyFile(String path){
+        File file = new File(path);
+        return file.length() == 0;
+
+    }
     public Boolean goodString(String str) { // checks to see if valid string
         return str != null;
     }
@@ -49,6 +53,7 @@ public class Urinals {
         for (int i = 0; i < str.length(); i++) {
             if (str.charAt(i) != '0' && str.charAt(i) != '1') {
                 flag = false;
+                break;
             }
         }
         return flag;
@@ -61,13 +66,14 @@ public class Urinals {
             String str = input.get(i);
             int count = 0;
             int n = str.length();
-            if (urinal.goodString(str) == false || urinal.validInput(str) == false) {
+            if (!urinal.goodString(str) || !urinal.validInput(str)) {
                 count = -1;
+                results.add(count);
                 continue;
             }
             if (str.charAt(0) == '0' && str.charAt(1) == '0') {
                 count++;
-                StringBuffer chr = new StringBuffer(str);
+                StringBuilder chr = new StringBuilder(str);
                 chr.setCharAt(0, '1');
                 str = String.valueOf(chr);
             }
@@ -75,7 +81,7 @@ public class Urinals {
             for (int j = 1; j < n - 1; j++) {
                 if (str.charAt(j - 1) == '0' && str.charAt(j + 1) == '0' && str.charAt(j) == '0') {
                     count++;
-                    StringBuffer chr = new StringBuffer(str);
+                    StringBuilder chr = new StringBuilder(str);
                     chr.setCharAt(i, '1');
                     str = String.valueOf(chr);
                 }
@@ -89,9 +95,8 @@ public class Urinals {
             }
             if (str.charAt(n - 1) == '0' && str.charAt(n - 2) == '0') {
                 count++;
-                StringBuffer chr = new StringBuffer(str);
+                StringBuilder chr = new StringBuilder(str);
                 chr.setCharAt(n - 1, '1');
-                str = String.valueOf(chr);
             }
             results.add(count);
 
@@ -99,7 +104,7 @@ public class Urinals {
         return results;
     }
 
-    public Boolean writeToFile(ArrayList<Integer> results) throws IOException {
+    public Boolean writeToFile(ArrayList<Integer> results) {
         File file = new File("rule.txt");
         try {
             if (file.createNewFile()) {
