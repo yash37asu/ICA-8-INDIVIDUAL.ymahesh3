@@ -1,4 +1,7 @@
 import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
+
 import static org.junit.jupiter.api.Assertions.*;
 /**
 * urinals Tester. 
@@ -14,5 +17,21 @@ public class UrinalsTest {
     void test_goodString() {
         String x = "yash";
         assertEquals(true,urinal.goodString(x));
+        System.out.println("====== Yashkumar Maheshwari == TEST ONE EXECUTED =======");
+    }
+
+
+    @Test
+    void validInput() {
+        String x = "008701";
+        assertEquals(false,urinal.validInput(x));
+        System.out.println("====== Yashkumar Maheshwari == TEST TWO EXECUTED =======");
+    }
+
+    @Test
+    void openFile() throws IOException {
+        String path = "src/data.txt";
+        assertEquals(true,urinal.openFile(path));
+        System.out.println("====== Yashkumar Maheshwari == TEST THREE EXECUTED =======");
     }
 }

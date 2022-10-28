@@ -5,22 +5,39 @@ import java.util.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 public class Urinals {
+    ArrayList<String> inputs = new ArrayList<>();
     public static void main(String[] args){
 
     }
-    public String openFile() throws FileNotFoundException {
-        String data = null;
-        File myObj = new File("src/data.txt");
-        Scanner myReader = new Scanner(myObj);
-        while (myReader.hasNextLine()) {
-            data = myReader.nextLine();
-            System.out.println(data);
+    public Boolean openFile(String path) {
+        try {
+            String data;
+            File myObj = new File(path);
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+                data = myReader.nextLine();
+                inputs.add(data);
+            }
+            myReader.close();
+            return true;
         }
-        myReader.close();
-        return data;
+        catch (FileNotFoundException E){
+            return false;
+        }
     }
 
     public Boolean goodString( String str ) { // checks to see if valid string
         return str != null;
+    }
+
+    public Boolean validInput( String str){ // check if input is in 0 and 1 format
+        boolean flag = true;
+        for(int i = 0;i<str.length();i++){
+            System.out.println(str.charAt(i));
+            if (str.charAt(i) != '0' && str.charAt(i) != '1'){
+                flag = false;
+            }
+        }
+        return flag;
     }
 }
