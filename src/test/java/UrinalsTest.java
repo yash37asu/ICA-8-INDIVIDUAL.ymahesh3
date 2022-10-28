@@ -30,7 +30,7 @@ public class UrinalsTest {
 
     @Test
     void openFile() throws IOException {
-        String path = "src/data.txt";
+        String path = "src/Urinal.dat";
         assertEquals(true,urinal.openFile(path));
         System.out.println("====== Yashkumar Maheshwari == TEST THREE EXECUTED =======");
     }
