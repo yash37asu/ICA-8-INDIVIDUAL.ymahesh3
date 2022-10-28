@@ -1,5 +1,5 @@
 import org.junit.jupiter.api.Test;
-
+import java.util.*;
 import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -33,5 +33,12 @@ public class UrinalsTest {
         String path = "src/Urinal.dat";
         assertEquals(true,urinal.openFile(path));
         System.out.println("====== Yashkumar Maheshwari == TEST THREE EXECUTED =======");
+    }
+
+    @Test
+    void writetofile() throws IOException {
+        ArrayList<Integer> numbers = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
+        assertEquals(true,urinal.writeToFile(numbers));
+
     }
 }

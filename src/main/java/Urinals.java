@@ -44,5 +44,43 @@ public class Urinals {
         return flag;
     }
 
+    public Boolean writeToFile(ArrayList<Integer> results) throws IOException {
+        File file = new File("rule.txt");
+        try {
+            if (file.createNewFile()) {
+                FileWriter writer = new FileWriter(file);
+                BufferedWriter addresult = new BufferedWriter(writer);
+                for (Integer result : results) {
+                    addresult.write(result + "");
+                    addresult.newLine();
+                }
+                addresult.close();
+            } else {
+                FileWriter writer = new FileWriter(file);
+                BufferedWriter addresult = new BufferedWriter(writer);
+                for (Integer result : results) {
+                    addresult.write(result + "");
+                    addresult.newLine();
+                }
+                addresult.close();
+            }
+            return true;
+/*
+static public void writeOutputToFile(File file, int[] output) throws IOException {
+        BufferedWriter fileWriter = new BufferedWriter(new FileWriter(file));
+        for (int num: output) {
+            fileWriter.write(num + "");
+            fileWriter.newLine();
+        }
+        fileWriter.close();
+    }
+
+}
+ */
+        }
+        catch (IOException E){
+            return false;
+        }
+    }
 
 }
