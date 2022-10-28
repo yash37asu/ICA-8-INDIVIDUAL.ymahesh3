@@ -56,17 +56,25 @@ public class UrinalsTest {
     void freeUrinals() {
         ArrayList<String> input = new ArrayList<>(Arrays.asList("1010", "0100011", "0010001010010001"));
         ArrayList<Integer> numbers = new ArrayList<>(Arrays.asList(0, -1, 3));
-        System.out.println("====== Yashkumar Maheshwari == TEST FOUR EXECUTED =======");
+        System.out.println("====== Yashkumar Maheshwari == TEST SIX EXECUTED =======");
         assertEquals(numbers, urinal.freeUrinals(input));
     }
 
     @Test
-    void writetofile() {
+    void duplicateFileCreationAttempt() {
+        //no duplicate files get generated in code.
         ArrayList<Integer> numbers = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
-        System.out.println("====== Yashkumar Maheshwari == TEST FIVE EXECUTED =======");
+        System.out.println("====== Yashkumar Maheshwari == TEST SEVEN EXECUTED =======");
         assertEquals(true, urinal.writeToFile(numbers));
-
     }
 
-
+    @Test
+    void writeIOException(){
+        ArrayList<Integer> numbers = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
+        System.out.println("====== Yashkumar Maheshwari == TEST EIGHT EXECUTED =======");
+        assertEquals(true, urinal.writeToFile(numbers));
+    }
 }
+
+
+

@@ -105,7 +105,8 @@ public class Urinals {
     }
 
     public Boolean writeToFile(ArrayList<Integer> results) {
-        File file = new File("rule.txt");
+        int counter = 0;
+        File file = new File("rule" +counter+".txt");
         try {
             if (file.createNewFile()) {
                 FileWriter writer = new FileWriter(file);
@@ -114,8 +115,12 @@ public class Urinals {
                     addresult.write(result + "");
                     addresult.newLine();
                 }
+                counter++;
                 addresult.close();
+                return true;
             } else {
+                counter++;
+                file = new File("rule"+counter+".txt");
                 FileWriter writer = new FileWriter(file);
                 BufferedWriter addresult = new BufferedWriter(writer);
                 for (Integer result : results) {
@@ -123,8 +128,8 @@ public class Urinals {
                     addresult.newLine();
                 }
                 addresult.close();
+                return true;
             }
-            return true;
         } catch (IOException E) {
             return false;
         }
